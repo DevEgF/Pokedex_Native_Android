@@ -1,0 +1,142 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: "androidx.navigation.safeargs"
+apply plugin: 'kotlin-parcelize'
+
+android {
+
+    defaultConfig {
+        buildConfigField "String", "BASE_URL", '"https://"'
+    }
+}
+
+android {
+    namespace 'com.example.pokedex'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.example.pokedex"
+        minSdk 26
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+        freeCompilerArgs += ["-Xopt-in=kotlin.RequireOptIn"]
+    }
+    buildFeatures{
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    // AndroidX
+    implementation 'androidx.core:core-ktx:1.10.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    // Material design
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.test.espresso:espresso-contrib:3.5.1'
+
+    // Navigation
+    def nav_version = '2.5.3'
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+
+    // ViewModel and LiveData
+    def lifecycle_version = "2.6.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+
+    //Coroutines core
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+
+    // OkHttp
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.9.0"))
+    implementation("com.squareup.okhttp3:okhttp")
+    implementation("com.squareup.okhttp3:logging-interceptor")
+
+    // Retrofit
+    def retrofit_version = '2.9.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.9.0'
+
+    //Paging3 Common
+    implementation 'androidx.paging:paging-common-ktx:3.1.1'
+
+    //Javax Inject
+    implementation "javax.inject:javax.inject:1"
+
+    // Dagger Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    // Room
+    def room_version = "2.5.1"
+    implementation "androidx.room:room-ktx:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-paging:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    // Paging3
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    // Glide
+    def glide_version = "4.13.0"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    // Other Libs
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    // Unit tests
+    implementation 'junit:junit:4.13.2'
+    implementation "androidx.arch.core:core-testing:2.2.0"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
+    implementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    testImplementation "androidx.room:room-testing:$room_version"
+
+    // Instrumentation tests
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    //Fragment Test
+    def fragment_version = "1.5.7"
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
+    // For instrumented tests.
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    //MockWebService
+    androidTestImplementation "com.squareup.okhttp3:mockwebserver:4.9.3"
+}
