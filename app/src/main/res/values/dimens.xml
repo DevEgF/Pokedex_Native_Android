@@ -52,10 +52,12 @@
     <dimen name="size_52dp">52dp</dimen>
     <dimen name="size_54dp">54dp</dimen>
     <dimen name="size_55dp">55dp</dimen>
+    <dimen name="size_56dp">56dp</dimen>
     <dimen name="size_60dp">60dp</dimen>
     <dimen name="size_63dp">63dp</dimen>
     <dimen name="size_65dp">65dp</dimen>
     <dimen name="size_66dp">66dp</dimen>
+    <dimen name="size_70dp">70dp</dimen>
     <dimen name="size_72dp">72dp</dimen>
     <dimen name="size_75dp">75dp</dimen>
     <dimen name="size_76dp">76dp</dimen>
