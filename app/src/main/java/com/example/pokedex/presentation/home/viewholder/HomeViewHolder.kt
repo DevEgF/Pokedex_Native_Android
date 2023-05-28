@@ -18,7 +18,8 @@ class HomeViewHolder(
     var picture: String? = ""
 
     fun bind(pokemon: Pokemon) {
-        picture = pokemon.url.getPicUrl()
+        picture = pokemon.url
+//        picture = pokemon.url.getPicUrl()
 
         textName.text = pokemon.name.capitalize()
         Glide.with(itemView)
