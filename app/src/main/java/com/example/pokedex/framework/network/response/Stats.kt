@@ -1,4 +1,4 @@
-package com.example.core.data.network.response
+package com.example.pokedex.framework.network.response
 
 @Suppress("ConstructorParameterNaming")
 data class Stats(

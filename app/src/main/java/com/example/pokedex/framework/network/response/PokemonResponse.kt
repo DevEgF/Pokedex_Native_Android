@@ -1,4 +1,4 @@
-package com.example.core.data.network.response
+package com.example.pokedex.framework.network.response
 
 data class PokemonResponse(
     val count: Int,
