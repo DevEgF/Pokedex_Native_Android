@@ -29,4 +29,8 @@
     <color name="quaternary_text_color">#FFFFFF</color>
     <color name="cold_breeze">#BECAD1</color>
     <color name="light_gray">#D9D9D9</color>
+
+    <color name="green">#49bb79</color>
+    <color name="dark_green">#1a231e</color>
+    <color name="yellow">#ffcba4</color>
 </resources>

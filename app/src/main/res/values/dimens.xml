@@ -130,4 +130,11 @@
     <dimen name="size_24sp">24sp</dimen>
     <dimen name="size_26sp">26sp</dimen>
 
+    <dimen name="pokemon_image_height">100dp</dimen>
+    <dimen name="card_side_margin">10dp</dimen>
+    <dimen name="card_bottom_margin">24dp</dimen>
+    <dimen name="card_elevation">8dp</dimen>
+    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="top_margin">24dp</dimen>
+
 </resources>
