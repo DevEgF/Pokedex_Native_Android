@@ -1,7 +1,7 @@
-package com.example.pokedex.core.data.network
+package com.example.core.data.network
 
-import com.example.pokedex.core.data.network.response.PokemonResponse
-import com.example.pokedex.core.data.network.response.SinglePokemonResponse
+import com.example.core.data.network.response.PokemonResponse
+import com.example.core.data.network.response.SinglePokemonResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
