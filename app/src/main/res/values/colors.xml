@@ -2,4 +2,35 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="pokemon_logo_light_blue">#2A75BB</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="dark_cyan">#008C77</color>
+    <color name="grayish_blue">#B1B1B4</color>
+    <color name="gray">#21212114</color>
+    <color name="black_90">#99000000</color>
+    <color name="black_66">#66000000</color>
+
+    <color name="primary_background_color">#F2F2F7</color>
+    <color name="secondary_background_color">#FFFFFF</color>
+    <color name="tertiary_background_color">#DADADA</color>
+    <color name="profile_background_color">#F5F5F5</color>
+    <color name="tab_chip_background_blue">#2B536A</color>
+    <color name="primary_brand_color_alpha">#2D556C</color>
+    <color name="chat_bot_background_color">#74AA9C</color>
+
+
+    <color name="primary_text_color">#000000</color>
+    <color name="secondary_text_color">#77777B</color>
+    <color name="tertiary_text_color">#B1B1B4</color>
+    <color name="quaternary_text_color">#FFFFFF</color>
+    <color name="cold_breeze">#BECAD1</color>
+    <color name="light_gray">#D9D9D9</color>
+
+    <color name="green">#49bb79</color>
+    <color name="dark_green">#1a231e</color>
+    <color name="yellow">#ffcba4</color>
 </resources>
