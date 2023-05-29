@@ -11,5 +11,6 @@ O que utilizei de lib para a primeira entrega?
 - 📕 Pagging 3;
 - 🏄🏻‍♂️ Cooroutines Flow;
 - 🛶 Navigation componentes;
+- 📷 Glide para carregamento das imagens.
 
 ## Segunda parte... in progress ⌛️
