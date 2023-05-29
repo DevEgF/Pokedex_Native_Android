@@ -13,4 +13,4 @@ O que utilizei de lib para a primeira entrega?
 - 🛶 Navigation componentes;
 - 📷 Glide para carregamento das imagens.
 
-## Segunda parte... in progress ⌛️
+## Segunda parte... em processo de desenvolvimento ⌛️
