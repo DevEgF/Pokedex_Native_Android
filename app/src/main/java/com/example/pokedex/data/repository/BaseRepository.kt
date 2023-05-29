@@ -13,13 +13,13 @@ open class BaseRepository {
         return withContext(Dispatchers.IO) {
             try {
                 NetworkResource.Success(apiCall.invoke())
-            } catch (throwable: Throwable) {
-                when (throwable) {
+            } catch (exception: Exception) {
+                when (exception) {
                     is HttpException -> {
                         NetworkResource.Failure(
                             false,
-                            throwable.code(),
-                            throwable.response()?.errorBody()
+                            exception.code(),
+                            exception.response()?.errorBody()
                         )
                     }
                     else -> {
