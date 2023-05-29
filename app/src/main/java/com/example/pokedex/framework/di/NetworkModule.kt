@@ -1,20 +1,16 @@
 package com.example.pokedex.framework.di
 
-import android.content.Context
 import com.example.pokedex.BuildConfig
 import com.example.pokedex.framework.di.qualifier.BaseUrl
 import com.example.pokedex.framework.network.PokeApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.File
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -22,7 +18,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val TIMEOUT = 60L
+    private const val TIMEOUT = 15L
 
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
