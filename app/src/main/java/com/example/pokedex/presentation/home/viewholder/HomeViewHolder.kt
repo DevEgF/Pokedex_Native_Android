@@ -4,10 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.core.domain.model.Pokemon
 import com.example.pokedex.R
 import com.example.pokedex.databinding.ItemPokemonBinding
-import com.example.pokedex.utils.getPicUrl
+import com.example.pokedex.framework.network.response.PokemonResult
 
 class HomeViewHolder(
     itemPokemonBinding: ItemPokemonBinding
@@ -17,7 +16,7 @@ class HomeViewHolder(
     private val imagePokemon = itemPokemonBinding.pokemonImage
     var picture: String? = ""
 
-    fun bind(pokemon: Pokemon) {
+    fun bind(pokemon: PokemonResult) {
         picture = pokemon.url
 //        picture = pokemon.url.getPicUrl()
 

@@ -1,6 +1,7 @@
 package com.example.pokedex.framework.di
 
 import com.example.pokedex.BuildConfig
+import com.example.pokedex.framework.network.PokeApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,6 +11,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -50,4 +52,8 @@ object NetworkModule {
             .addConverterFactory(converterFactory)
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun providePokemonApi(retrofit: Retrofit): PokeApi = retrofit.create(PokeApi::class.java)
 }

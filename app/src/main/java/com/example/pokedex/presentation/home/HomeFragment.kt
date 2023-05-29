@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.core.domain.model.Pokemon
 import com.example.pokedex.databinding.FragmentHomeBinding
+import com.example.pokedex.framework.network.response.PokemonResult
 import com.example.pokedex.presentation.home.adapter.HomeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,15 +35,33 @@ class HomeFragment: Fragment() {
 
         pokemonAdapter.submitList(
             listOf(
-                Pokemon("bulbasaur", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"),
-                Pokemon("ivysaur","https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"),
-                Pokemon("venusaur", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"),
-                Pokemon("charmander", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"),
-                Pokemon("charmeleon", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png"),
-                Pokemon("charizard", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"),
-                Pokemon("squirtle", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"),
-                Pokemon("wartortle", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png"),
-                Pokemon("blastoise", "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png")
+                PokemonResult(
+                    "bulbasaur",
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"),
+                PokemonResult(
+                    "ivysaur",
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"),
+                PokemonResult(
+                    "venusaur",
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png"),
+                PokemonResult(
+                    "charmander",
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png"),
+                PokemonResult(
+                    "charmeleon",
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png"),
+                PokemonResult(
+                    "charizard",
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png"),
+                PokemonResult(
+                    "squirtle",
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/7.png"),
+                PokemonResult(
+                    "wartortle",
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png"),
+                PokemonResult(
+                    "blastoise",
+                    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/9.png")
             )
         )
     }
