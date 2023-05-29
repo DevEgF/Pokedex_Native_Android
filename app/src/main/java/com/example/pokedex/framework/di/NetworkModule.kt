@@ -22,7 +22,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val TIMEOUT = 15L
+    private const val TIMEOUT = 60L
 
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
@@ -42,14 +42,12 @@ object NetworkModule {
 
     @Provides
     fun provideOkHttpClient(
-        cache: Cache,
         loggingInterceptor: HttpLoggingInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .readTimeout(TIMEOUT, TimeUnit.SECONDS)
             .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
-            .cache(cache)
             .build()
     }
 
@@ -58,24 +56,15 @@ object NetworkModule {
         okHttpClient: OkHttpClient,
         converterFactory: GsonConverterFactory,
         @BaseUrl baseUrl: String
-    ): PokeApi {
+    ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(okHttpClient)
             .addConverterFactory(converterFactory)
             .build()
-            .create(PokeApi::class.java)
     }
 
-    /*Caching data */
-    @Suppress("MagicNumber")
     @Provides
     @Singleton
-    fun provideCache(@ApplicationContext appContext: Context): Cache {
-
-        return Cache(
-            File(appContext.applicationContext.cacheDir, "pokemon_cache"),
-            10 * 1024 * 1024
-        )
-    }
+    fun providePokemonApi(retrofit: Retrofit): PokeApi = retrofit.create(PokeApi::class.java)
 }

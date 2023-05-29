@@ -7,6 +7,7 @@ import com.bumptech.glide.Glide
 import com.example.pokedex.R
 import com.example.pokedex.databinding.ItemPokemonBinding
 import com.example.pokedex.framework.network.response.PokemonResult
+import com.example.pokedex.utils.getPicUrl
 
 class HomeViewHolder(
     itemPokemonBinding: ItemPokemonBinding
@@ -18,7 +19,6 @@ class HomeViewHolder(
 
     fun bind(pokemon: PokemonResult) {
         picture = pokemon.url
-//        picture = pokemon.url.getPicUrl()
 
         textName.text = pokemon.name.capitalize()
         Glide.with(itemView)
