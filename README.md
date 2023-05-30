@@ -9,7 +9,7 @@ O que utilizei de lib para a primeira entrega?
 
 - 🌐 Criação da camada de serviço utilizando Retrofit e OkHttp;
 - 📕 Pagging 3;
-- 🏄🏻‍♂️ Cooroutines Flow;
+- 🏄🏻‍♂️ Coroutines Flow;
 - 🛶 Navigation componentes;
 - 📷 Glide para carregamento das imagens.
 
