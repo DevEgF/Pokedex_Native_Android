@@ -14,6 +14,7 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import com.example.pokedex.databinding.FragmentHomeBinding
 import com.example.pokedex.presentation.home.adapter.HomeAdapter
+import com.example.pokedex.presentation.home.adapter.PokemonLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
@@ -49,10 +50,11 @@ class HomeFragment: Fragment() {
 
     private fun initPokemonAdapter() {
         pokemonAdapter = HomeAdapter()
-
         with(binding.recyclerPokemon){
             setHasFixedSize(true)
-            adapter = pokemonAdapter
+            adapter = pokemonAdapter.withLoadStateFooter(
+               footer = PokemonLoadStateAdapter { pokemonAdapter.retry() }
+            )
         }
     }
 
