@@ -5,7 +5,7 @@
 
 ## Primeira parte do projeto inclui a listagem de todos os pokemons, isso mesmo TODOS 🩷
 
-O que utilizei de lib para a primeira entrega? 
+O que utilizei de lib para a desenvolvimento da primeira parte? 
 
 - 🌐 Criação da camada de serviço utilizando Retrofit e OkHttp;
 - 📕 Pagging 3;
