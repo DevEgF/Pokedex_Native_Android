@@ -20,4 +20,8 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_pokemon" />
 
+    <include
+        android:id="@+id/include_view_pokemon_error_state"
+        layout="@layout/include_view_pokemon_error_state"/>
+
 </ViewFlipper>

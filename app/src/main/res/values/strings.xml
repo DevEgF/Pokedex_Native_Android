@@ -3,4 +3,7 @@
     <string name="menu_home">Home</string>
     <string name="catch_menu">Catch</string>
     <string name="info_menu">Info</string>
+
+    <string name="error_loading_pokemon">Error when trying load Pokemon</string>
+    <string name="commom_try_again">Try again</string>
 </resources>

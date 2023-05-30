@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import com.example.pokedex.databinding.FragmentHomeBinding
@@ -25,7 +27,7 @@ class HomeFragment: Fragment() {
     private val viewModel: HomeViewModel by viewModels()
     private var job: Job? = null
 
-    private val pokemonAdapter = HomeAdapter()
+    private lateinit var pokemonAdapter: HomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +48,8 @@ class HomeFragment: Fragment() {
     }
 
     private fun initPokemonAdapter() {
+        pokemonAdapter = HomeAdapter()
+
         with(binding.recyclerPokemon){
             setHasFixedSize(true)
             adapter = pokemonAdapter
@@ -55,9 +59,11 @@ class HomeFragment: Fragment() {
     private fun startFetchPokemon(queries: String, shouldSubmitEmpty: Boolean) {
         job?.cancel()
         job = lifecycleScope.launch {
-            if(shouldSubmitEmpty) pokemonAdapter.submitData(PagingData.empty())
-            viewModel.getPokemons(queries).collectLatest {
-                pokemonAdapter.submitData(it)
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
+                if(shouldSubmitEmpty) pokemonAdapter.submitData(PagingData.empty())
+                viewModel.getPokemons(queries).collectLatest {
+                    pokemonAdapter.submitData(it)
+                }
             }
         }
     }
@@ -74,7 +80,13 @@ class HomeFragment: Fragment() {
                         setShimmerVisibility(false)
                         FLIPPER_CHILD_POKEMON
                     }
-                    is LoadState.Error -> FLIPPER_CHILD_ERROR
+                    is LoadState.Error -> {
+                        setShimmerVisibility(false)
+                        binding.includeViewPokemonErrorState.buttonRetry.setOnClickListener {
+                            pokemonAdapter.refresh()
+                        }
+                        FLIPPER_CHILD_ERROR
+                    }
                 }
             }
         }
@@ -87,6 +99,11 @@ class HomeFragment: Fragment() {
                 startShimmer()
             } else stopShimmer()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     companion object {
