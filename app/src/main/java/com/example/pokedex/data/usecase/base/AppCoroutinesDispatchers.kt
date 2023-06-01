@@ -1,4 +1,4 @@
-package com.example.pokedex.utils.base
+package com.example.pokedex.data.usecase.base
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
