@@ -1,7 +1,7 @@
 ## PokedexProject
 
 - Projeto que engloba a utilização de todas as bibliotecas do Android Jetpack.
-- Arquitetura MVVM
+- Arquitetura Clean + MVVM
 
 ## Primeira parte do projeto inclui a listagem de todos os pokemons, isso mesmo TODOS 🩷
 
