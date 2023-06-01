@@ -3,8 +3,7 @@ package com.example.pokedex.presentation.home.adapter
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
-import com.example.pokedex.framework.network.response.PokemonResult
+import com.example.pokedex.data.network.domain.PokemonResult
 import com.example.pokedex.presentation.home.viewholder.HomeViewHolder
 
 class HomeAdapter: PagingDataAdapter<PokemonResult, HomeViewHolder>(diffCallback) {

@@ -1,7 +1,15 @@
 package com.example.pokedex.presentation.info
 
 import androidx.lifecycle.ViewModel
+import com.example.pokedex.data.repository.PokemonRepository
+import com.example.pokedex.utils.base.NetworkResource
+import com.example.pokedex.utils.extractId
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class PokemonInfoViewModel : ViewModel() {
-    //Implement the ViewModel
+@HiltViewModel
+class PokemonInfoViewModel @Inject constructor(
+): ViewModel() {
+    //implemt viewmodel
 }

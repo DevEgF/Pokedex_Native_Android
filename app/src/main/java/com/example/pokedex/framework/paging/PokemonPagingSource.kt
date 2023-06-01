@@ -2,12 +2,12 @@ package com.example.pokedex.framework.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.pokedex.framework.network.PokeApi
-import com.example.pokedex.framework.network.response.PokemonResult
+import com.example.pokedex.data.network.domain.PokemonResult
+import com.example.pokedex.data.network.remote.PokemonRemoteDataSource
 
 @Suppress("TooGenericExceptionCaught")
 class PokemonPagingSource(
-    private val pokeApi: PokeApi,
+    private val remoteDataSource: PokemonRemoteDataSource,
     private val queries: String
 ): PagingSource<Int, PokemonResult>() {
 
@@ -17,7 +17,7 @@ class PokemonPagingSource(
         val loadSize = LOAD_SIZE
 
         return try {
-            val data = pokeApi.getPokemons(loadSize, offset)
+            val data = remoteDataSource.fetchPokemon(loadSize, offset)
             val filteredData = data.results.filter { it.name.contains(queries, true) }
 
             LoadResult.Page(

@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/flipper_pokemon"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/primary_background_color"
     tools:context=".presentation.home.HomeFragment">
+
+    <include
+        android:id="@+id/include_view_pokemon_loading_state"
+        layout="@layout/include_view_pokemon_loading_state"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_pokemon"
@@ -14,4 +19,9 @@
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_pokemon" />
-</LinearLayout>
+
+    <include
+        android:id="@+id/include_view_pokemon_error_state"
+        layout="@layout/include_view_pokemon_error_state"/>
+
+</ViewFlipper>

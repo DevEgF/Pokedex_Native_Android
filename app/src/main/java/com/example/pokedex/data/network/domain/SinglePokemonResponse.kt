@@ -1,4 +1,4 @@
-package com.example.pokedex.framework.network.response
+package com.example.pokedex.data.network.domain
 
 data class SinglePokemonResponse(
     val sprites: Sprites,

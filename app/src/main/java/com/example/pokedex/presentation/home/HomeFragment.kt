@@ -5,15 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.paging.PagingData
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
 import com.example.pokedex.databinding.FragmentHomeBinding
-import com.example.pokedex.framework.network.response.PokemonResult
 import com.example.pokedex.presentation.home.adapter.HomeAdapter
+import com.example.pokedex.presentation.home.adapter.PokemonLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -23,9 +24,8 @@ class HomeFragment: Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
-    private var job: Job? = null
 
-    private val pokemonAdapter = HomeAdapter()
+    private lateinit var pokemonAdapter: HomeAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,23 +41,68 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initPokemonAdapter()
-        startFetchPokemon("", true)
+        observeInitialLoadState()
+
+        lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.pokemonPagingData("").collect{ pagingData ->
+                    pokemonAdapter.submitData(pagingData)
+                }
+            }
+        }
     }
 
     private fun initPokemonAdapter() {
+        pokemonAdapter = HomeAdapter()
         with(binding.recyclerPokemon){
             setHasFixedSize(true)
-            adapter = pokemonAdapter
+            adapter = pokemonAdapter.withLoadStateFooter(
+               footer = PokemonLoadStateAdapter { pokemonAdapter.retry() }
+            )
         }
     }
 
-    private fun startFetchPokemon(queries: String, shouldSubmitEmpty: Boolean) {
-        job?.cancel()
-        job = lifecycleScope.launch {
-            if(shouldSubmitEmpty) pokemonAdapter.submitData(PagingData.empty())
-            viewModel.getPokemons(queries).collectLatest {
-                pokemonAdapter.submitData(it)
+    private fun observeInitialLoadState() {
+        lifecycleScope.launch {
+            pokemonAdapter.loadStateFlow.collectLatest { loadState ->
+                binding.flipperPokemon.displayedChild = when(loadState.refresh){
+                    is LoadState.Loading -> {
+                        setShimmerVisibility(true)
+                        FLIPPER_CHILD_LOADING
+                    }
+                    is LoadState.NotLoading -> {
+                        setShimmerVisibility(false)
+                        FLIPPER_CHILD_POKEMON
+                    }
+                    is LoadState.Error -> {
+                        setShimmerVisibility(false)
+                        binding.includeViewPokemonErrorState.buttonRetry.setOnClickListener {
+                            pokemonAdapter.refresh()
+                        }
+                        FLIPPER_CHILD_ERROR
+                    }
+                }
             }
         }
+    }
+
+    private fun setShimmerVisibility(visibility: Boolean) {
+        binding.includeViewPokemonLoadingState.shimmerPokemon.run{
+            isVisible = visibility
+            if (visibility) {
+                startShimmer()
+            } else stopShimmer()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    companion object {
+        private const val FLIPPER_CHILD_LOADING = 0
+        private const val FLIPPER_CHILD_POKEMON = 1
+        private const val FLIPPER_CHILD_ERROR = 2
     }
 }
