@@ -13,9 +13,4 @@ class PokemonInfoViewModel @Inject constructor(
     private val pokemonRepository: PokemonRepository
 ): ViewModel() {
 
-    suspend fun getSinglePokemon(url: String) = flow {
-        val id = url.extractId()
-        emit(NetworkResource.Loading)
-        emit(pokemonRepository.getSinglePokemon(id))
-    }
 }

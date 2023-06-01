@@ -1,5 +1,6 @@
+package com.example.pokedex.data.usecase.base
+
 import androidx.paging.PagingData
-import com.example.pokedex.data.usecase.base.ResultStatus
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

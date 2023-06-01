@@ -2,7 +2,6 @@ package com.example.pokedex.framework.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.pokedex.data.network.PokeApi
 import com.example.pokedex.data.network.domain.PokemonResult
 import com.example.pokedex.data.network.remote.PokemonRemoteDataSource
 
