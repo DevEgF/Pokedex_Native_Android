@@ -3,9 +3,9 @@
 - Projeto que engloba a utilização de todas as bibliotecas do Android Jetpack.
 - Arquitetura Clean + MVVM
 
-## Primeira parte do projeto inclui a listagem de todos os pokemons, isso mesmo TODOS 🩷
+## Primeira parte do projeto inclui a listagem de todos os pokemons. 
 
-O que utilizei de lib para a desenvolvimento da primeira parte? 
+O que utilizei do Android Jetpack para a desenvolvimento da primeira parte? 
 
 - 🌐 Criação da camada de serviço utilizando Retrofit e OkHttp;
 - 📕 Pagging 3;
