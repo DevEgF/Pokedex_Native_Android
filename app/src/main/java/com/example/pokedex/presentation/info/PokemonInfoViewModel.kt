@@ -10,7 +10,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PokemonInfoViewModel @Inject constructor(
-    private val pokemonRepository: PokemonRepository
 ): ViewModel() {
-
+    //implemt viewmodel
 }
