@@ -17,6 +17,7 @@ import com.example.pokedex.presentation.home.adapter.HomeAdapter
 import com.example.pokedex.presentation.home.adapter.PokemonLoadStateAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -26,7 +27,6 @@ class HomeFragment: Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
-    private var job: Job? = null
 
     private lateinit var pokemonAdapter: HomeAdapter
 
@@ -43,32 +43,27 @@ class HomeFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initPokemonAdapter()
-        startFetchPokemon("", true)
+//        initPokemonAdapter()
         observeInitialLoadState()
-    }
 
-    private fun initPokemonAdapter() {
-        pokemonAdapter = HomeAdapter()
-        with(binding.recyclerPokemon){
-            setHasFixedSize(true)
-            adapter = pokemonAdapter.withLoadStateFooter(
-               footer = PokemonLoadStateAdapter { pokemonAdapter.retry() }
-            )
-        }
-    }
-
-    private fun startFetchPokemon(queries: String, shouldSubmitEmpty: Boolean) {
-        job?.cancel()
-        job = lifecycleScope.launch {
+        lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
-                if(shouldSubmitEmpty) pokemonAdapter.submitData(PagingData.empty())
-                viewModel.getPokemons(queries).collectLatest {
-                    pokemonAdapter.submitData(it)
+                viewModel.pokemonPagingData("").collect{ pagingData ->
+                    pokemonAdapter.submitData(pagingData)
                 }
             }
         }
     }
+
+//    private fun initPokemonAdapter() {
+//        pokemonAdapter = HomeAdapter()
+//        with(binding.recyclerPokemon){
+//            setHasFixedSize(true)
+//            adapter = pokemonAdapter.withLoadStateFooter(
+//               footer = PokemonLoadStateAdapter { pokemonAdapter.retry() }
+//            )
+//        }
+//    }
 
     private fun observeInitialLoadState() {
         lifecycleScope.launch {

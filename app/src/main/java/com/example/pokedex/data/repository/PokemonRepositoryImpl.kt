@@ -3,31 +3,26 @@ package com.example.pokedex.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import androidx.paging.PagingSource
 import com.example.pokedex.data.repository.base.BaseRepository
-import com.example.pokedex.framework.network.PokeApi
-import com.example.pokedex.framework.network.response.PokemonResult
-import com.example.pokedex.framework.network.response.SinglePokemonResponse
+import com.example.pokedex.data.network.PokeApi
+import com.example.pokedex.data.network.domain.PokemonResult
+import com.example.pokedex.data.network.domain.SinglePokemonResponse
+import com.example.pokedex.data.network.remote.PokemonRemoteDataSource
 import com.example.pokedex.framework.paging.PokemonPagingSource
+import com.example.pokedex.utils.base.NetworkResource
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class PokemonRepositoryImpl @Inject constructor(
-    private val pokeApi: PokeApi
-): PokemonRepository, BaseRepository() {
-    override fun getPokemon(queries: String): Flow<PagingData<PokemonResult>> = Pager(
-        config = PagingConfig(enablePlaceholders = false, pageSize = PAGE_SIZE),
-        pagingSourceFactory = {
-            PokemonPagingSource(pokeApi, queries)
-        }
-    ).flow
+    private val remoteDataSource: PokemonRemoteDataSource
+): PokemonRepository {
 
-    override suspend fun getSinglePokemon(id: Int) = safeApiCall {
-        pokeApi.getSinglePokemon(id)
+    override fun getPokemon(queries: String): PagingSource<Int, PokemonResult> {
+        return PokemonPagingSource(remoteDataSource, queries)
     }
 
-    companion object {
-        private const val PAGE_SIZE = 25
+    override suspend fun getSinglePokemon(id: Int): NetworkResource<SinglePokemonResponse> {
+        TODO("Not yet implemented")
     }
 }
-

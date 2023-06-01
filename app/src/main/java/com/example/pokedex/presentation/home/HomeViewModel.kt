@@ -1,30 +1,33 @@
 package com.example.pokedex.presentation.home
 
-import android.provider.ContactsContract.CommonDataKinds.Identity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.example.pokedex.data.repository.PokemonRepository
-import com.example.pokedex.data.repository.PokemonRepositoryImpl
-import com.example.pokedex.framework.network.response.PokemonResult
-import com.example.pokedex.utils.base.NetworkResource
-import com.example.pokedex.utils.extractId
+import com.example.pokedex.data.network.domain.PokemonResult
+import com.example.pokedex.data.usecase.GetPokemonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val pokemonRepository: PokemonRepository
+    private val getPokemonUseCase: GetPokemonUseCase
 ):ViewModel() {
 
-    private var currentResult: Flow<PagingData<PokemonResult>>? = null
-    fun getPokemons(queries: String): Flow<PagingData<PokemonResult>> {
-        val newResult: Flow<PagingData<PokemonResult>> =
-            pokemonRepository.getPokemon(queries).cachedIn(viewModelScope)
-        currentResult = newResult
-        return newResult
+    fun pokemonPagingData(query: String): Flow<PagingData<PokemonResult>> {
+        return getPokemonUseCase(
+            GetPokemonUseCase.GetPokemonParams(query, getPagingConfig())
+        ).cachedIn(viewModelScope)
+    }
+
+    private fun getPagingConfig() = PagingConfig(
+        pageSize = PAGE_SIZE
+    )
+
+    companion object {
+        private const val PAGE_SIZE = 20
     }
 }

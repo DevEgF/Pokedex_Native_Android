@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pokedex.R
 import com.example.pokedex.databinding.ItemPokemonBinding
-import com.example.pokedex.framework.network.response.PokemonResult
+import com.example.pokedex.data.network.domain.PokemonResult
 import com.example.pokedex.utils.getPicUrl
 
 class HomeViewHolder(

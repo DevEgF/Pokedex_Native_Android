@@ -1,12 +1,7 @@
 package com.example.pokedex.presentation.home
 
-import androidx.paging.PagingData
 import com.example.pokedex.data.repository.PokemonRepository
-import com.example.pokedex.data.repository.PokemonRepositoryImpl
-import com.example.pokedex.framework.network.response.PokemonResult
-import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import org.junit.Assert.assertNotNull
