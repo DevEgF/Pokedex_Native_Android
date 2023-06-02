@@ -8,7 +8,7 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:background="@color/pokemon_logo_light_blue"
+        android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:titleTextColor="@color/white"
@@ -31,7 +31,7 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_main"
-        android:background="@color/pokemon_logo_light_blue"
+        android:background="@color/colorPrimaryDark"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_60dp"
         app:labelVisibilityMode="unlabeled"

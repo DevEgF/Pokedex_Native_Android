@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/flipper_pokemon"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/primary_background_color"
+    android:background="@color/background"
     tools:context=".presentation.home.HomeFragment">
 
     <include
@@ -17,7 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
         tools:listitem="@layout/item_pokemon" />
 
     <include
