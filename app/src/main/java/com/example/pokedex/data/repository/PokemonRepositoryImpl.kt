@@ -16,7 +16,7 @@ class PokemonRepositoryImpl @Inject constructor(
         return PokemonPagingSource(remoteDataSource, queries)
     }
 
-    override suspend fun getSinglePokemon(id: Int): ResultStatus<SinglePokemonResponse> {
-        TODO("Not yet implemented")
+    override suspend fun getSinglePokemon(id: Int): SinglePokemonResponse {
+        return remoteDataSource.fetchSinglePokemon(id)
     }
 }
