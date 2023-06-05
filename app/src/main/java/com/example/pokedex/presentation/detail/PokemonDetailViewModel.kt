@@ -1,21 +1,21 @@
 package com.example.pokedex.presentation.detail
 
 import androidx.lifecycle.ViewModel
-import com.example.pokedex.data.network.domain.SinglePokemonResponse
-import com.example.pokedex.data.usecase.GetSinglePokemonUseCase
-import com.example.pokedex.data.usecase.base.ResultStatus
+import com.example.pokedex.data.repository.SinglePokemonRepository
+import com.example.pokedex.utils.NetworkResource
+import com.example.pokedex.utils.extractId
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 @HiltViewModel
 class PokemonDetailViewModel @Inject constructor(
-    private val getSinglePokemonUseCase: GetSinglePokemonUseCase
+    private val singlePokemonRepository: SinglePokemonRepository
 ) : ViewModel() {
 
-    fun singlePokemonData(id: Int): Flow<ResultStatus<SinglePokemonResponse>> {
-        return getSinglePokemonUseCase(
-            GetSinglePokemonUseCase.GetSinglePokemonParams(id)
-        )
+    suspend fun getSinglePokemon(url: String) = flow {
+        val id = url.extractId()
+        emit(NetworkResource.Loading)
+        emit(singlePokemonRepository.getSinglePokemon(id))
     }
 }

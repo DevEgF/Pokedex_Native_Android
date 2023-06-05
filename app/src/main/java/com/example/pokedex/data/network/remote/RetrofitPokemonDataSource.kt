@@ -16,12 +16,4 @@ class RetrofitPokemonDataSource @Inject constructor(
         val results = pokeApi.getPokemons(limit, offset).results
         return PokemonResponse(count, next, previous, results)
     }
-
-    override suspend fun fetchSinglePokemon(id: Int): SinglePokemonResponse {
-        val sprites = pokeApi.getSinglePokemon(id).sprites
-        val stats = pokeApi.getSinglePokemon(id).stats
-        val height = pokeApi.getSinglePokemon(id).height
-        val weight = pokeApi.getSinglePokemon(id).weight
-        return SinglePokemonResponse(sprites, stats, height, weight)
-    }
 }

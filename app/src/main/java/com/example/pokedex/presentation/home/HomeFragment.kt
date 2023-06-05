@@ -10,7 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
+import com.example.pokedex.data.network.domain.PokemonResult
 import com.example.pokedex.databinding.FragmentHomeBinding
 import com.example.pokedex.presentation.home.adapter.HomeAdapter
 import com.example.pokedex.presentation.home.adapter.PokemonLoadStateAdapter
@@ -53,7 +56,12 @@ class HomeFragment: Fragment() {
     }
 
     private fun initPokemonAdapter() {
-        pokemonAdapter = HomeAdapter()
+        pokemonAdapter = HomeAdapter { pokemonResult: PokemonResult, dominantColor: Int, picture: String? ->
+            navigate(
+                pokemonResult,
+                dominantColor,
+                picture)
+        }
         with(binding.recyclerPokemon){
             setHasFixedSize(true)
             adapter = pokemonAdapter.withLoadStateFooter(
@@ -93,6 +101,16 @@ class HomeFragment: Fragment() {
                 startShimmer()
             } else stopShimmer()
         }
+    }
+
+    private fun navigate (pokemonResult: PokemonResult, dominantColor: Int, picture: String?){
+        val directions = HomeFragmentDirections
+            .actionHomeFragmentToPokemonDetailFragment(
+                pokemonResult,
+                dominantColor,
+                picture
+        )
+        findNavController().navigate(directions)
     }
 
     override fun onDestroy() {

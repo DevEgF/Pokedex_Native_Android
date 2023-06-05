@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="@dimen/size_100dp"
     android:layout_height="@dimen/size_100dp"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_marginHorizontal="@dimen/size_10dp"
-    android:layout_marginVertical="@dimen/size_24dp"
     app:cardCornerRadius="@dimen/size_10dp"
     app:cardElevation="@dimen/size_10dp"
-    app:cardPreventCornerOverlap="false"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent">

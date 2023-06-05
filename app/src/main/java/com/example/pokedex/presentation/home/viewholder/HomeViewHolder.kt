@@ -16,10 +16,12 @@ import com.bumptech.glide.request.target.Target
 import com.example.pokedex.R
 import com.example.pokedex.databinding.ItemPokemonBinding
 import com.example.pokedex.data.network.domain.PokemonResult
+import com.example.pokedex.utils.PokemonDetailsNavigate
 import com.example.pokedex.utils.getPicUrl
 
 class HomeViewHolder(
-    itemPokemonBinding: ItemPokemonBinding
+    itemPokemonBinding: ItemPokemonBinding,
+    private val pokemonDetailsNavigate: PokemonDetailsNavigate
 ): RecyclerView.ViewHolder(itemPokemonBinding.root) {
 
     private val textName = itemPokemonBinding.pokemonTextName
@@ -70,13 +72,20 @@ class HomeViewHolder(
                 }
             })
             .into(imagePokemon)
+
+        itemView.setOnClickListener {
+            pokemonDetailsNavigate.invoke(pokemon, dominantColor, picture)
+        }
     }
 
     companion object{
-        fun create(parent: ViewGroup): HomeViewHolder {
+        fun create(
+            parent: ViewGroup,
+            pokemonDetailsNavigate: PokemonDetailsNavigate
+        ): HomeViewHolder {
             val inflater = LayoutInflater.from(parent.context)
             val itemBinding = ItemPokemonBinding.inflate(inflater, parent, false)
-            return  HomeViewHolder(itemBinding)
+            return  HomeViewHolder(itemBinding, pokemonDetailsNavigate)
         }
     }
 }

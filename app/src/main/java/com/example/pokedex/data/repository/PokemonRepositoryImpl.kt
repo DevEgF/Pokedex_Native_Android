@@ -15,8 +15,4 @@ class PokemonRepositoryImpl @Inject constructor(
     override fun getPokemon(queries: String): PagingSource<Int, PokemonResult> {
         return PokemonPagingSource(remoteDataSource, queries)
     }
-
-    override suspend fun getSinglePokemon(id: Int): SinglePokemonResponse {
-        return remoteDataSource.fetchSinglePokemon(id)
-    }
 }

@@ -5,11 +5,12 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.example.pokedex.data.network.domain.PokemonResult
 import com.example.pokedex.presentation.home.viewholder.HomeViewHolder
+import com.example.pokedex.utils.PokemonDetailsNavigate
 
-class HomeAdapter: PagingDataAdapter<PokemonResult, HomeViewHolder>(diffCallback) {
+class HomeAdapter(private val pokemonDetailNavigate: PokemonDetailsNavigate): PagingDataAdapter<PokemonResult, HomeViewHolder>(diffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-       return HomeViewHolder.create(parent)
+       return HomeViewHolder.create(parent, pokemonDetailNavigate)
     }
 
     override fun onBindViewHolder(holder: HomeViewHolder, position: Int) {
