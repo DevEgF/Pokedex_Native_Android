@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.example.pokedex.data.repository.PokemonRepository
 import com.example.pokedex.data.network.domain.PokemonResult
 import com.example.pokedex.data.usecase.GetPokemonUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

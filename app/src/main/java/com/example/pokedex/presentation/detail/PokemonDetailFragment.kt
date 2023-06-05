@@ -12,15 +12,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.example.pokedex.data.network.domain.PokemonResult
-import com.example.pokedex.data.network.domain.Stats
 import com.example.pokedex.data.usecase.base.ResultStatus
 import com.example.pokedex.databinding.FragmentPokemonDetailBinding
 import com.example.pokedex.presentation.detail.adapter.PokemonDetailAdapter
-import com.example.pokedex.utils.NetworkResource
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -64,7 +59,14 @@ class PokemonDetailFragment : Fragment() {
                             val pokemonData = resultStatus.data
                             val statsList = pokemonData.stats
                             val statsArrayList = ArrayList(statsList)
+                            val height = (pokemonData.height.div(10.0).toString() + " metres")
+                            val weight = (pokemonData.weight.div(10.0).toString() + " kgs")
                             pokemonDetailsAdapter.setStats(statsArrayList)
+
+                            with(binding){
+                                pokemonItemHeight.text = height
+                                pokemonItemWeight.text = weight
+                            }
                         }
                         is ResultStatus.Error -> {
 
