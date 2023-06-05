@@ -1,14 +1,8 @@
 package com.example.pokedex.data.repository
 
-import com.example.pokedex.data.network.PokeApi
-import com.example.pokedex.utils.BaseRepository
-import javax.inject.Inject
+import com.example.pokedex.data.network.domain.SinglePokemonResponse
 
-class SinglePokemonRepository @Inject constructor(
-    private val pokeApi: PokeApi
-): BaseRepository() {
+interface SinglePokemonRepository {
 
-    suspend fun getSinglePokemon(id: Int) = safeApiCall {
-        pokeApi.getSinglePokemon(id)
-    }
+    suspend fun getSinglePokemon(id: Int): SinglePokemonResponse
 }
