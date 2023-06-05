@@ -15,4 +15,6 @@ O que utilizei do Android Jetpack para a desenvolvimento da primeira parte?
 - 🛶 Navigation componentes;
 - 📷 Glide para carregamento das imagens.
 
+<img src="https://github.com/DevEgF/PokedexProject/assets/104474051/fa214024-62f6-4496-b7cc-fb93f429f1be" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
+
 ## Segunda parte... em processo de desenvolvimento ⌛️
