@@ -7,4 +7,5 @@
     <string name="error_loading_pokemon">Error when trying load Pokemon</string>
     <string name="error_loading_more_pokemon">Error when trying to load next page. Try again</string>
     <string name="commom_try_again">Try again</string>
+    <string name="base_stats">Base Stats</string>
 </resources>

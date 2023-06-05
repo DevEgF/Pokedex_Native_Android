@@ -4,6 +4,8 @@ import com.example.pokedex.data.network.remote.PokemonRemoteDataSource
 import com.example.pokedex.data.network.remote.RetrofitPokemonDataSource
 import com.example.pokedex.data.repository.PokemonRepository
 import com.example.pokedex.data.repository.PokemonRepositoryImpl
+import com.example.pokedex.data.repository.SinglePokemonRepository
+import com.example.pokedex.data.repository.SinglePokemonRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,6 +17,10 @@ interface RepositoryModule {
 
     @Binds
     fun bindRemoteDataSource(dataSource: RetrofitPokemonDataSource): PokemonRemoteDataSource
+
     @Binds
     fun bindsPokemonRepository(repository: PokemonRepositoryImpl): PokemonRepository
+
+    @Binds
+    fun bindsSinglePokemonRepository(repository: SinglePokemonRepositoryImpl): SinglePokemonRepository
 }

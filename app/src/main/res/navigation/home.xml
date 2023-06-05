@@ -10,5 +10,29 @@
         android:id="@+id/homeFragment"
         android:name="com.example.pokedex.presentation.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_pokemonDetailFragment"
+            app:destination="@id/pokemonDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokemonDetailFragment"
+        android:name="com.example.pokedex.presentation.detail.PokemonDetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_pokemon_detail">
+
+        <argument
+            android:name="pokemonResult"
+            app:argType="com.example.pokedex.data.network.domain.PokemonResult"
+            app:nullable="false" />
+
+        <argument
+            android:name="dominant_color"
+            app:argType="integer" />
+
+        <argument
+            android:name="picture"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
 </navigation>
