@@ -59,8 +59,8 @@ class PokemonDetailFragment : Fragment() {
                             val pokemonData = resultStatus.data
                             val statsList = pokemonData.stats
                             val statsArrayList = ArrayList(statsList)
-                            val height = (pokemonData.height.div(10.0).toString() + " metres")
-                            val weight = (pokemonData.weight.div(10.0).toString() + " kgs")
+                            val height = (pokemonData.height.div(DEFAULT).toString() + " metres")
+                            val weight = (pokemonData.weight.div(DEFAULT).toString() + " kgs")
                             pokemonDetailsAdapter.setStats(statsArrayList)
 
                             with(binding){
@@ -83,5 +83,9 @@ class PokemonDetailFragment : Fragment() {
             setHasFixedSize(true)
             adapter = pokemonDetailsAdapter
         }
+    }
+
+    companion object {
+        private const val DEFAULT = 10.0
     }
 }

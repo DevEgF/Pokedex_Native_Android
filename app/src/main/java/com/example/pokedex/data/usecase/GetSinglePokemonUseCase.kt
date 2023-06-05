@@ -24,7 +24,9 @@ class GetSinglePokemonUseCaseImpl @Inject constructor(
     private val dispatchers: AppCoroutinesDispatchers
 ): GetSinglePokemonUseCase, UseCase<GetSinglePokemonUseCase.GetSinglePokemonParams, SinglePokemonResponse>(){
 
-    override suspend fun doWork(params: GetSinglePokemonUseCase.GetSinglePokemonParams): ResultStatus<SinglePokemonResponse> {
+    override suspend fun doWork(
+        params: GetSinglePokemonUseCase.GetSinglePokemonParams
+    ): ResultStatus<SinglePokemonResponse> {
         return withContext(dispatchers.io()){
             val singlePokemonDeferred = async {
                 singlePokemonRepository.getSinglePokemon(params.id)

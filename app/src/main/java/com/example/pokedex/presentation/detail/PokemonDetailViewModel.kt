@@ -14,7 +14,6 @@ class PokemonDetailViewModel @Inject constructor(
     private val getSinglePokemonUseCase: GetSinglePokemonUseCase
 ) : ViewModel() {
 
-
     fun singlePokemon(url: String): Flow<ResultStatus<SinglePokemonResponse>>{
         val id = url.extractId()
         return getSinglePokemonUseCase.invoke(
