@@ -1,4 +1,4 @@
-package com.example.pokedex.data.usecase.base
+package com.example.pokedex.utils
 
 import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow

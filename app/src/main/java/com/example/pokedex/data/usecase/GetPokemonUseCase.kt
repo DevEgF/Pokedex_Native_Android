@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import com.example.pokedex.data.network.domain.PokemonResult
 import com.example.pokedex.data.repository.PokemonRepository
 import com.example.pokedex.data.usecase.GetPokemonUseCase.GetPokemonParams
-import com.example.pokedex.data.usecase.base.PagingUseCase
+import com.example.pokedex.utils.PagingUseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

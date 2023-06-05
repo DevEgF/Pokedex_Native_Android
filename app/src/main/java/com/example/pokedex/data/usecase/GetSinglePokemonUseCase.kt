@@ -2,9 +2,9 @@ package com.example.pokedex.data.usecase
 
 import com.example.pokedex.data.network.domain.SinglePokemonResponse
 import com.example.pokedex.data.repository.SinglePokemonRepository
-import com.example.pokedex.data.usecase.base.AppCoroutinesDispatchers
-import com.example.pokedex.data.usecase.base.ResultStatus
-import com.example.pokedex.data.usecase.base.UseCase
+import com.example.pokedex.utils.AppCoroutinesDispatchers
+import com.example.pokedex.utils.ResultStatus
+import com.example.pokedex.utils.UseCase
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext

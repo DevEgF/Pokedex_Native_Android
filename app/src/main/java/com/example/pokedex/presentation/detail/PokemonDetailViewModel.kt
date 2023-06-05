@@ -3,7 +3,7 @@ package com.example.pokedex.presentation.detail
 import androidx.lifecycle.ViewModel
 import com.example.pokedex.data.network.domain.SinglePokemonResponse
 import com.example.pokedex.data.usecase.GetSinglePokemonUseCase
-import com.example.pokedex.data.usecase.base.ResultStatus
+import com.example.pokedex.utils.ResultStatus
 import com.example.pokedex.utils.extractId
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
