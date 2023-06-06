@@ -105,7 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/size_16dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        android:layout_marginTop="@dimen/size_20dp"
+        android:layout_marginTop="@dimen/size_5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
