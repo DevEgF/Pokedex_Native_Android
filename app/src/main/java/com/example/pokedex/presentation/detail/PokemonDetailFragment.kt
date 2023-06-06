@@ -12,7 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.example.pokedex.data.usecase.base.ResultStatus
+import com.example.pokedex.utils.ResultStatus
 import com.example.pokedex.databinding.FragmentPokemonDetailBinding
 import com.example.pokedex.presentation.detail.adapter.PokemonDetailAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,13 +59,17 @@ class PokemonDetailFragment : Fragment() {
                             val pokemonData = resultStatus.data
                             val statsList = pokemonData.stats
                             val statsArrayList = ArrayList(statsList)
-                            val height = (pokemonData.height.div(10.0).toString() + " metres")
-                            val weight = (pokemonData.weight.div(10.0).toString() + " kgs")
+                            val height = (pokemonData.height.div(DEFAULT).toString() + " mts")
+                            val weight = (pokemonData.weight.div(DEFAULT).toString() + " kgs")
+                            val id = pokemonData.id.toString()
+                            val name = pokemonData.name
                             pokemonDetailsAdapter.setStats(statsArrayList)
 
                             with(binding){
                                 pokemonItemHeight.text = height
                                 pokemonItemWeight.text = weight
+                                pokedexOrder.text = "## $id"
+                                pokemonTextName.text= name.capitalize()
                             }
                         }
                         is ResultStatus.Error -> {
@@ -83,5 +87,9 @@ class PokemonDetailFragment : Fragment() {
             setHasFixedSize(true)
             adapter = pokemonDetailsAdapter
         }
+    }
+
+    companion object {
+        private const val DEFAULT = 10.0
     }
 }

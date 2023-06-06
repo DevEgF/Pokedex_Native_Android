@@ -1,4 +1,4 @@
-package com.example.pokedex.data.usecase.base
+package com.example.pokedex.utils
 
 sealed class ResultStatus<out T> {
     object Loading : ResultStatus<Nothing>()

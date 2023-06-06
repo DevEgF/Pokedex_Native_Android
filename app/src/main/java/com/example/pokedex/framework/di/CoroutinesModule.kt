@@ -1,7 +1,7 @@
 package com.example.pokedex.framework.di
 
-import com.example.pokedex.data.usecase.base.AppCoroutinesDispatchers
-import com.example.pokedex.data.usecase.base.CoroutinesDispatchers
+import com.example.pokedex.utils.AppCoroutinesDispatchers
+import com.example.pokedex.utils.CoroutinesDispatchers
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
