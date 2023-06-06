@@ -1,6 +1,8 @@
 package com.example.pokedex.data.network.domain
 
+@Suppress("ConstructorParameterNaming")
 data class Abilities(
-    val name: String,
-    val url: String
+    val ability: Ability,
+    val is_hidden: Boolean,
+    val slot: Int
 )

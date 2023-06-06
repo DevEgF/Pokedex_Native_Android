@@ -5,5 +5,6 @@ data class SinglePokemonResponse(
     val stats: List<Stats>,
     val height: Int,
     val weight: Int,
-    val id: Int
+    val id: Int,
+    val name: String
 )

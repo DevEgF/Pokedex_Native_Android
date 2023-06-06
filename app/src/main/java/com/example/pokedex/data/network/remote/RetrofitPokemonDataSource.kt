@@ -23,6 +23,7 @@ class RetrofitPokemonDataSource @Inject constructor(
         val height = pokeApi.getSinglePokemon(id).height
         val weight = pokeApi.getSinglePokemon(id).weight
         val id = pokeApi.getSinglePokemon(id).id
-        return SinglePokemonResponse(sprites, stats, height, weight, id)
+        val name = pokeApi.getSinglePokemon(id).name
+        return SinglePokemonResponse(sprites, stats, height, weight, id, name)
     }
 }

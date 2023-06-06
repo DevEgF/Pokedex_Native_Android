@@ -59,15 +59,17 @@ class PokemonDetailFragment : Fragment() {
                             val pokemonData = resultStatus.data
                             val statsList = pokemonData.stats
                             val statsArrayList = ArrayList(statsList)
-                            val height = (pokemonData.height.div(DEFAULT).toString() + " metres")
+                            val height = (pokemonData.height.div(DEFAULT).toString() + " mts")
                             val weight = (pokemonData.weight.div(DEFAULT).toString() + " kgs")
                             val id = pokemonData.id.toString()
+                            val name = pokemonData.name
                             pokemonDetailsAdapter.setStats(statsArrayList)
 
                             with(binding){
                                 pokemonItemHeight.text = height
                                 pokemonItemWeight.text = weight
-                                pokedexOrder.text = id
+                                pokedexOrder.text = "## $id"
+                                pokemonTextName.text= name.capitalize()
                             }
                         }
                         is ResultStatus.Error -> {

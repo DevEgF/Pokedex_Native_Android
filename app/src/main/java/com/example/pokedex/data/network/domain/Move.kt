@@ -1,6 +1,6 @@
 package com.example.pokedex.data.network.domain
 
-data class Form(
+data class Move(
     val name: String,
     val url: String
 )
