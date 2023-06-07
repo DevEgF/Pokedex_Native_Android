@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/pxfuel"
         app:cardPreventCornerOverlap="false"
+        app:layout_constraintBottom_toTopOf="@id/stats"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_16dp"
             android:layout_marginTop="@dimen/size_10dp"
-            android:layout_marginBottom="@dimen/size_20dp"
+            android:layout_marginBottom="@dimen/size_50dp"
             android:textAppearance="?attr/textAppearanceListItem"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,49 +32,70 @@
             tools:text="01" />
 
         <ImageView
-            android:id="@+id/pokemon_image"
+            android:id="@+id/pokemon_item_image"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/size_100dp"
-            android:layout_marginTop="@dimen/size_50dp"
-            app:layout_constraintBottom_toTopOf="@id/pokemon_text_name"
+            android:layout_marginTop="@dimen/size_60dp"
+            android:layout_marginBottom="@dimen/size_20dp"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars"
-            android:importantForAccessibility="no" />
+            tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/pokemon_text_name"
-            style="@style/TextAppearance.AppCompat.Title"
-            android:layout_width="@dimen/size_0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/size_10dp"
-            android:background="@color/background900"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="1"
-            android:padding="@dimen/size_16dp"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pokemon_image"
-            tools:text="Bulbasaur" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_parent_detail"
+    <TextView
+        android:id="@+id/stats"
         android:layout_width="@dimen/size_0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10dp"
+        android:gravity="center"
+        android:text="@string/base_stats"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/pokemon_item_height"
+        app:layout_constraintStart_toEndOf="@+id/pokemon_item_weight"
+        app:layout_constraintTop_toBottomOf="@+id/card" />
+
+    <TextView
+        android:id="@+id/pokemon_item_weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_16dp"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/stats"
+        tools:text="charmander" />
+
+    <TextView
+        android:id="@+id/pokemon_item_height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_16dp"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/stats"
+        tools:text="charmander" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pokemon_stat_list"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/size_0dp"
-        android:padding="@dimen/size_16dp"
-        android:scrollbars="horizontal"
+        android:layout_marginHorizontal="@dimen/size_16dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:layout_marginTop="@dimen/size_5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card"
-        android:clipToPadding="false"
-        tools:itemCount="1"
-        tools:listitem="@layout/item_parent_detail"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/stats"
+        app:spanCount="2"
+        tools:itemCount="2"
+        tools:listitem="@layout/item_pokemon_detail" />
 </androidx.constraintlayout.widget.ConstraintLayout>
