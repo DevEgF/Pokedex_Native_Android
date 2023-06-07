@@ -18,17 +18,17 @@
     <fragment
         android:id="@+id/pokemonDetailFragment"
         android:name="com.example.pokedex.presentation.detail.PokemonDetailFragment"
-        android:label="Detail"
+        android:label="{screenTitle}"
         tools:layout="@layout/fragment_pokemon_detail">
+
+        <argument
+            android:name="screenTitle"
+            app:argType="string"/>
 
         <argument
             android:name="pokemonResult"
             app:argType="com.example.pokedex.data.network.domain.PokemonResult"
             app:nullable="false" />
-
-        <argument
-            android:name="dominant_color"
-            app:argType="integer" />
 
         <argument
             android:name="picture"

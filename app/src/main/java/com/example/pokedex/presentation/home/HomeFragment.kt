@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.example.pokedex.data.network.domain.PokemonResult
@@ -56,11 +57,18 @@ class HomeFragment: Fragment() {
     }
 
     private fun initPokemonAdapter() {
-        pokemonAdapter = HomeAdapter { pokemonResult: PokemonResult, dominantColor: Int, picture: String? ->
-            navigate(
-                pokemonResult,
-                dominantColor,
-                picture)
+        pokemonAdapter = HomeAdapter { pokemonResult: PokemonResult, view: View, dominantColor: Int, picture: String? ->
+            val extras = FragmentNavigatorExtras(
+                view to pokemonResult.name
+            )
+
+            val directions = HomeFragmentDirections
+                .actionHomeFragmentToPokemonDetailFragment(
+                    pokemonResult.name.capitalize(),
+                    pokemonResult,
+                    picture
+                )
+            findNavController().navigate(directions, extras)
         }
         with(binding.recyclerPokemon){
             setHasFixedSize(true)
@@ -101,16 +109,6 @@ class HomeFragment: Fragment() {
                 startShimmer()
             } else stopShimmer()
         }
-    }
-
-    private fun navigate (pokemonResult: PokemonResult, dominantColor: Int, picture: String?){
-        val directions = HomeFragmentDirections
-            .actionHomeFragmentToPokemonDetailFragment(
-                pokemonResult,
-                dominantColor,
-                picture
-        )
-        findNavController().navigate(directions)
     }
 
     override fun onDestroy() {

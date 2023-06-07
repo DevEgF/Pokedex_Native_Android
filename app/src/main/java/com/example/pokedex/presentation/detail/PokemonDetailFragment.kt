@@ -1,29 +1,24 @@
 package com.example.pokedex.presentation.detail
 
 import android.os.Bundle
+import android.transition.TransitionInflater
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.example.pokedex.utils.ResultStatus
+import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentPokemonDetailBinding
-import com.example.pokedex.presentation.detail.adapter.PokemonDetailAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class PokemonDetailFragment : Fragment() {
 
     private var _binding: FragmentPokemonDetailBinding? = null
     private val binding: FragmentPokemonDetailBinding get() = _binding!!
-    private lateinit var pokemonDetailsAdapter: PokemonDetailAdapter
     private val args by navArgs<PokemonDetailFragmentArgs>()
     private val viewModel: PokemonDetailViewModel by viewModels()
 
@@ -37,59 +32,42 @@ class PokemonDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initSinglePokemonAdapter()
         val pokemonResult = args.pokemonResult
         val picture = args.picture
-
-        with(binding){
-            Glide.with(root)
+        binding.pokemonImage.run {
+            transitionName = pokemonResult.name.capitalize()
+            Glide.with(context)
                 .load(picture)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .into(pokemonItemImage)
+                .fallback(R.drawable.ic_img_loading_error)
+                .into(this)
         }
+        setSharedElementTransitionOnEnter()
 
-        lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.singlePokemon(pokemonResult.url).collect{ resultStatus ->
-                    when(resultStatus) {
-                        is ResultStatus.Loading -> {
-
-                        }
-                        is ResultStatus.Success -> {
-                            val pokemonData = resultStatus.data
-                            val statsList = pokemonData.stats
-                            val statsArrayList = ArrayList(statsList)
-                            val height = (pokemonData.height.div(DEFAULT).toString() + " mts")
-                            val weight = (pokemonData.weight.div(DEFAULT).toString() + " kgs")
-                            val id = pokemonData.id.toString()
-                            val name = pokemonData.name
-                            pokemonDetailsAdapter.setStats(statsArrayList)
-
-                            with(binding){
-                                pokemonItemHeight.text = height
-                                pokemonItemWeight.text = weight
-                                pokedexOrder.text = "## $id"
-                                pokemonTextName.text= name.capitalize()
-                            }
-                        }
-                        is ResultStatus.Error -> {
-
-                        }
-                    }
-                }
+        viewModel.uiState.observe(viewLifecycleOwner){ uiState ->
+            val logResult = when(uiState) {
+                PokemonDetailViewModel.UiState.Loading -> "Loading stats.."
+                is PokemonDetailViewModel.UiState.Success -> uiState.singlePokemonResponse.toString()
+                PokemonDetailViewModel.UiState.Error -> "Error when loading"
             }
+
+            Log.d(PokemonDetailFragment::class.simpleName, logResult)
         }
+        viewModel.singlePokemon(args.pokemonResult.url)
     }
 
-    private fun initSinglePokemonAdapter() {
-        pokemonDetailsAdapter = PokemonDetailAdapter()
-        with(binding.pokemonStatList){
-            setHasFixedSize(true)
-            adapter = pokemonDetailsAdapter
-        }
+    private fun setSharedElementTransitionOnEnter() {
+        TransitionInflater.from(requireContext())
+            .inflateTransition(android.R.transition.move).apply {
+                sharedElementEnterTransition = this
+            }
     }
 
-    companion object {
-        private const val DEFAULT = 10.0
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
+
+//    companion object {
+//        private const val DEFAULT = 10.0
+//    }
 }
