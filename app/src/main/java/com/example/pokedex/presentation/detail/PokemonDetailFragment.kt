@@ -41,21 +41,18 @@ class PokemonDetailFragment : Fragment() {
 
     private fun setupViewObserver(){
         viewModel.uiState.observe(viewLifecycleOwner){ uiState ->
-            when(uiState) {
-                PokemonDetailViewModel.UiState.Loading -> {
-                    "Loading stats.."
-                }
+           binding.flipperDetail.displayedChild = when(uiState) {
+                PokemonDetailViewModel.UiState.Loading -> FLIPPER_CHILD_POSITION_LOADING
+
                 is PokemonDetailViewModel.UiState.Success -> {
 
                     val statsList = uiState.singlePokemonResponse.stats
                     val statsArrayList = ArrayList(statsList)
                     val height = (uiState.singlePokemonResponse.height.div(DEFAULT).toString() + " mts")
                     val weight = (uiState.singlePokemonResponse.weight.div(DEFAULT).toString() + " kgs")
-                    val id = uiState.singlePokemonResponse.id.toString()
 
                     binding.pokemonItemHeight.text = height
                     binding.pokemonItemWeight.text = weight
-                    binding.pokedexOrder.text = id
 
                     pokemonDetailsAdapter = PokemonDetailAdapter()
                     binding.pokemonStatList.run {
@@ -63,11 +60,10 @@ class PokemonDetailFragment : Fragment() {
                         adapter = pokemonDetailsAdapter
                         pokemonDetailsAdapter.setStats(statsArrayList)
                     }
-                }
-                PokemonDetailViewModel.UiState.Error -> {
 
-
+                    FLIPPER_CHILD_STATS_LIST
                 }
+                PokemonDetailViewModel.UiState.Error -> FLIPPER_CHILD_ERROR
             }
         }
         viewModel.singlePokemon(args.pokemonResult.url)
@@ -99,6 +95,9 @@ class PokemonDetailFragment : Fragment() {
     }
 
     companion object {
+        private const val FLIPPER_CHILD_POSITION_LOADING = 0
+        private const val FLIPPER_CHILD_STATS_LIST = 1
+        private const val FLIPPER_CHILD_ERROR = 2
         private const val DEFAULT = 10.0
     }
 }

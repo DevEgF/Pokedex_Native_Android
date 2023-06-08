@@ -14,7 +14,6 @@
     <color name="black_66">#66000000</color>
 
     <color name="primary_background_color">#F2F2F7</color>
-    <color name="secondary_background_color">#FFFFFF</color>
     <color name="profile_background_color">#F5F5F5</color>
     <color name="tab_chip_background_blue">#2B536A</color>
     <color name="primary_brand_color_alpha">#2D556C</color>
@@ -22,7 +21,7 @@
 
 
     <color name="primary_text_color">#000000</color>
-    <color name="secondary_text_color">#77777B</color>
+    <color name="secondary_background_color">#77777B</color>
     <color name="tertiary_text_color">#B1B1B4</color>
     <color name="quaternary_text_color">#FFFFFF</color>
     <color name="cold_breeze">#BECAD1</color>
