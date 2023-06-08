@@ -1,8 +1,9 @@
-package com.example.pokedex.data.repository
+package com.example.pokedex.framework.repository
 
 import androidx.paging.PagingSource
 import com.example.pokedex.data.network.domain.PokemonResult
-import com.example.pokedex.data.network.remote.PokemonRemoteDataSource
+import com.example.pokedex.data.network.datasource.PokemonRemoteDataSource
+import com.example.pokedex.data.repository.PokemonRepository
 import com.example.pokedex.framework.paging.PokemonPagingSource
 import javax.inject.Inject
 

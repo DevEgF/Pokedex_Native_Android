@@ -6,12 +6,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.pokedex.R
 import com.example.pokedex.databinding.FragmentPokemonDetailBinding
+import com.example.pokedex.presentation.detail.PokemonDetailViewModel.FavoriteUiState
+import com.example.pokedex.presentation.detail.PokemonDetailViewModel.UiState
 import com.example.pokedex.presentation.detail.adapter.PokemonDetailAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,15 +37,20 @@ class PokemonDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupPokemonImage()
         setSharedElementTransitionOnEnter()
-        setupViewObserver()
+        observeUiState()
+        observeFavoriteUiState()
+
+        binding.imageFavoriteIcon.setOnClickListener{
+            viewModel.updateFavorite(args.pokemonResult)
+        }
     }
 
-    private fun setupViewObserver(){
+    private fun observeUiState(){
         viewModel.uiState.observe(viewLifecycleOwner){ uiState ->
            binding.flipperDetail.displayedChild = when(uiState) {
-                PokemonDetailViewModel.UiState.Loading -> FLIPPER_CHILD_POSITION_LOADING
+                UiState.Loading -> FLIPPER_CHILD_POSITION_LOADING
 
-                is PokemonDetailViewModel.UiState.Success -> {
+                is UiState.Success -> {
 
                     val statsList = uiState.singlePokemonResponse.stats
                     val statsArrayList = ArrayList(statsList)
@@ -63,7 +69,7 @@ class PokemonDetailFragment : Fragment() {
 
                     FLIPPER_CHILD_STATS_LIST
                 }
-                PokemonDetailViewModel.UiState.Error -> {
+                UiState.Error -> {
                     binding.errorLoad.buttonRetry.setOnClickListener {
                         viewModel.singlePokemon(args.pokemonResult.url)
                     }
@@ -74,7 +80,19 @@ class PokemonDetailFragment : Fragment() {
         viewModel.singlePokemon(args.pokemonResult.url)
     }
 
-    private fun setupPokemonImage(){
+    private fun observeFavoriteUiState(){
+        viewModel.favoriteUiState.observe(viewLifecycleOwner){ favoriteUiState ->
+            binding.flipperFavorite.displayedChild = when (favoriteUiState){
+                FavoriteUiState.Loading -> FLIPPER_FAVORITE_UI_STATE_LOADING
+                is FavoriteUiState.FavoriteIcon -> {
+                    binding.imageFavoriteIcon.setImageResource(R.drawable.ic_favorite_checked)
+                    FLIPPER_FAVORITE_UI_STATE_CHECKED
+                }
+            }
+        }
+    }
+
+    private fun setupPokemonImage() {
         val pokemonResult = args.pokemonResult
         val picture = args.picture
 
@@ -103,6 +121,8 @@ class PokemonDetailFragment : Fragment() {
         private const val FLIPPER_CHILD_POSITION_LOADING = 0
         private const val FLIPPER_CHILD_STATS_LIST = 1
         private const val FLIPPER_CHILD_ERROR = 2
+        private const val FLIPPER_FAVORITE_UI_STATE_CHECKED = 0
+        private const val FLIPPER_FAVORITE_UI_STATE_LOADING = 1
         private const val DEFAULT = 10.0
     }
 }
