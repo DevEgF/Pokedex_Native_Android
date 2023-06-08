@@ -13,19 +13,12 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="@dimen/size_100dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/secondary_background_color"
             android:gravity="start"
-            android:layout_marginStart="@dimen/size_16dp"
+            android:layout_marginHorizontal="@dimen/size_16dp"
             style="@style/TextAppearance.Material3.HeadlineLarge"/>
-
-        <TextView
-            style="@style/TextAppearance.Material3.HeadlineLarge"
-            android:layout_width="@dimen/size_100dp"
-            android:layout_marginStart="@dimen/size_170dp"
-            android:layout_height="wrap_content"
-            android:background="@color/secondary_background_color"/>
     </LinearLayout>
 
     <LinearLayout
