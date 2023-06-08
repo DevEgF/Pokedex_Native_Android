@@ -13,6 +13,7 @@ O que utilizei de bibliotecas para a desenvolvimento ?
 - 💉 Dagger-Hilt *(Android Jetpack)*;
 - 🏄🏻‍♂️ Coroutines Flow *(Android Jetpack)*;
 - 🛶 Navigation componentes *(Android Jetpack)*;
+- 🗄️ Room Database *(Android Jetpack)*;
 - 📷 Glide.
 
 <img src="https://github.com/DevEgF/PokedexProject/assets/104474051/248e058f-fd67-4ad0-b5eb-593310b1afc5" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
