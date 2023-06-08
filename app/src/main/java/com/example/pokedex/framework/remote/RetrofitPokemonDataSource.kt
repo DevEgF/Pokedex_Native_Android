@@ -1,14 +1,14 @@
-package com.example.pokedex.data.network.remote
+package com.example.pokedex.framework.remote
 
 import com.example.pokedex.data.network.PokeApi
 import com.example.pokedex.data.network.domain.PokemonResponse
-import com.example.pokedex.data.network.domain.PokemonResult
 import com.example.pokedex.data.network.domain.SinglePokemonResponse
+import com.example.pokedex.data.network.datasource.PokemonRemoteDataSource
 import javax.inject.Inject
 
 class RetrofitPokemonDataSource @Inject constructor(
     private val pokeApi: PokeApi
-): PokemonRemoteDataSource{
+): PokemonRemoteDataSource {
     override suspend fun fetchPokemon(limit: Int, offset: Int): PokemonResponse {
         val count = pokeApi.getPokemons(limit, offset).count
         val next = pokeApi.getPokemons(limit, offset).next

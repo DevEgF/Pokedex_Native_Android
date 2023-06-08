@@ -1,4 +1,4 @@
-package com.example.pokedex.data.network.remote
+package com.example.pokedex.data.network.datasource
 
 import com.example.pokedex.data.network.domain.PokemonResponse
 import com.example.pokedex.data.network.domain.SinglePokemonResponse

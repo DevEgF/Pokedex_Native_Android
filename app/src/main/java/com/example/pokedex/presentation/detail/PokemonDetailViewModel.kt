@@ -1,39 +1,68 @@
 package com.example.pokedex.presentation.detail
 
+import androidx.annotation.DrawableRes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.pokedex.R
+import com.example.pokedex.data.network.domain.PokemonResult
 import com.example.pokedex.data.network.domain.SinglePokemonResponse
+import com.example.pokedex.data.usecase.AddFavoriteUseCase
 import com.example.pokedex.data.usecase.GetSinglePokemonUseCase
-import com.example.pokedex.utils.ResultStatus
+import com.example.pokedex.presentation.extensions.watchStatus
 import com.example.pokedex.utils.extractId
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class PokemonDetailViewModel @Inject constructor(
+    private val addFavoriteUseCase: AddFavoriteUseCase,
     private val getSinglePokemonUseCase: GetSinglePokemonUseCase
 ) : ViewModel() {
 
     private val _uiState = MutableLiveData<UiState>()
     val uiState: LiveData<UiState> get() = _uiState
 
-    fun singlePokemon(url: String) = viewModelScope.launch {
-        val id = url.extractId()
-        getSinglePokemonUseCase(GetSinglePokemonUseCase.GetSinglePokemonParams(id))
-            .watchStatus()
+    private val _favoriteUiState = MutableLiveData<FavoriteUiState>()
+    val favoriteUiState: LiveData<FavoriteUiState> get() =_favoriteUiState
+
+    init {
+        _favoriteUiState.value = FavoriteUiState.FavoriteIcon(R.drawable.ic_favorite_unchecked)
     }
 
-    private fun Flow<ResultStatus<SinglePokemonResponse>>.watchStatus() = viewModelScope.launch {
-        collect { status ->
-            _uiState.value = when (status) {
-                ResultStatus.Loading -> UiState.Loading
-                is ResultStatus.Success -> UiState.Success(status.data)
-                is ResultStatus.Error -> UiState.Error
-            }
+    fun singlePokemon(url: String) = viewModelScope.launch {
+        val id = url.extractId()
+        getSinglePokemonUseCase
+            .invoke(GetSinglePokemonUseCase.GetSinglePokemonParams(id))
+            .watchStatus(
+                loading = {
+                    _uiState.value = UiState.Loading
+                },
+                success = { data ->
+                    _uiState.value = UiState.Success(data)
+                },
+                error = {
+                    _uiState.value = UiState.Error
+                }
+            )
+    }
+
+    fun updateFavorite(pokemonResult: PokemonResult) = viewModelScope.launch {
+        pokemonResult.run {
+            addFavoriteUseCase.invoke(
+                AddFavoriteUseCase.Params(name, url)
+            ).watchStatus(
+                loading = {
+                    _favoriteUiState.value = FavoriteUiState.Loading
+                },
+                success = {
+                    _favoriteUiState.value = FavoriteUiState.FavoriteIcon(R.drawable.ic_favorite_checked)
+                },
+                error = {
+                }
+            )
         }
     }
 
@@ -41,5 +70,10 @@ class PokemonDetailViewModel @Inject constructor(
         object Loading: UiState()
         data class Success (val singlePokemonResponse: SinglePokemonResponse): UiState()
         object Error: UiState()
+    }
+
+    sealed class FavoriteUiState {
+        object Loading: FavoriteUiState()
+        class FavoriteIcon(@DrawableRes val icon: Int): FavoriteUiState()
     }
 }

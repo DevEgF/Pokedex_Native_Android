@@ -1,7 +1,8 @@
-package com.example.pokedex.data.repository
+package com.example.pokedex.framework.repository
 
 import com.example.pokedex.data.network.domain.SinglePokemonResponse
-import com.example.pokedex.data.network.remote.PokemonRemoteDataSource
+import com.example.pokedex.data.network.datasource.PokemonRemoteDataSource
+import com.example.pokedex.data.repository.SinglePokemonRepository
 import javax.inject.Inject
 
 class SinglePokemonRepositoryImpl @Inject constructor(
