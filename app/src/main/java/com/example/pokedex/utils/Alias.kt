@@ -1,5 +1,6 @@
 package com.example.pokedex.utils
 
+import android.view.View
 import com.example.pokedex.data.network.domain.PokemonResult
 
-typealias PokemonDetailsNavigate = (PokemonResult, Int, String?) -> Unit
+typealias PokemonDetailsNavigate = (pokemonResult: PokemonResult, view: View, Int, String?) -> Unit

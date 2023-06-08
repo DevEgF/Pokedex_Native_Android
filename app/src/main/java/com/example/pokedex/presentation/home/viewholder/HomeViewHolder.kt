@@ -31,6 +31,7 @@ class HomeViewHolder(
 
     fun bind(pokemon: PokemonResult) {
         picture = pokemon.url.getPicUrl()
+        imagePokemon.transitionName = pokemon.name.capitalize()
 
         textName.text = pokemon.name.capitalize()
         Glide.with(itemView)
@@ -74,7 +75,7 @@ class HomeViewHolder(
             .into(imagePokemon)
 
         itemView.setOnClickListener {
-            pokemonDetailsNavigate.invoke(pokemon, dominantColor, picture)
+            pokemonDetailsNavigate.invoke(pokemon, imagePokemon, dominantColor, picture)
         }
     }
 
