@@ -1,12 +1,19 @@
 <resources>
     <string name="app_name">Pokedex</string>
     <string name="menu_home">Home</string>
-    <string name="catch_menu">Catch</string>
-    <string name="info_menu">Info</string>
+    <string name="catch_menu">Favorites</string>
+    <string name="info_menu">Developer message</string>
 
     <string name="error_loading_pokemon">Error when trying load data</string>
     <string name="error_loading_more_pokemon">Error when trying to load next page. Try again</string>
     <string name="commom_no_result_found">No results found</string>
     <string name="commom_try_again">Try again</string>
     <string name="base_stats">Base Stats</string>
+
+
+    <!-- Dev Info -->
+    <string name="dev_project">Pokédex with Android Jetpack!</string>
+    <string name="dev_hastag">#AndroidDevelopment #AndroidJetpack #CleanArchitecture #MVVM #Pokédex!</string>
+    <string name="dev_text">Hello everyone! This is a study project where I created a Pokédex for Android, using all the tools from Android Jetpack! Android Jetpack is a set of libraries and tools by Google that make Android app development easier. In this project, I use the Clean + MVVM architecture. With the Pokédex, I explored advanced features of Android such as the Navigation Component, Flow, Room, Data Binding, ViewModel, WorkManager, Paging Library, and Hilt for dependency injection. The goal is to create a functional Pokédex and share the complete example, demonstrating how to use these Android Jetpack tools with the Clean + MVVM architecture.</string>
+
 </resources>

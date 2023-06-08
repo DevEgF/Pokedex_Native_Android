@@ -63,7 +63,12 @@ class PokemonDetailFragment : Fragment() {
 
                     FLIPPER_CHILD_STATS_LIST
                 }
-                PokemonDetailViewModel.UiState.Error -> FLIPPER_CHILD_ERROR
+                PokemonDetailViewModel.UiState.Error -> {
+                    binding.errorLoad.buttonRetry.setOnClickListener {
+                        viewModel.singlePokemon(args.pokemonResult.url)
+                    }
+                    FLIPPER_CHILD_ERROR
+                }
             }
         }
         viewModel.singlePokemon(args.pokemonResult.url)

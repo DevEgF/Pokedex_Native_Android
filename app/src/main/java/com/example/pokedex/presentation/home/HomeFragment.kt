@@ -73,7 +73,9 @@ class HomeFragment: Fragment() {
         with(binding.recyclerPokemon){
             setHasFixedSize(true)
             adapter = pokemonAdapter.withLoadStateFooter(
-               footer = PokemonLoadStateAdapter { pokemonAdapter.retry() }
+               footer = PokemonLoadStateAdapter {
+                   pokemonAdapter::retry
+               }
             )
         }
     }
@@ -93,7 +95,7 @@ class HomeFragment: Fragment() {
                     is LoadState.Error -> {
                         setShimmerVisibility(false)
                         binding.includeViewPokemonErrorState.buttonRetry.setOnClickListener {
-                            pokemonAdapter.refresh()
+                            pokemonAdapter.retry()
                         }
                         FLIPPER_CHILD_ERROR
                     }
