@@ -7,6 +7,7 @@
 
 O que utilizei de bibliotecas para a desenvolvimento ? 
 
+- 🔍 Detekt 
 - 🌐 Retrofit e OkHttp;
 - 📕 Pagging 3 *(Android Jetpack)*;
 - 💉 Dagger-Hilt *(Android Jetpack)*;
