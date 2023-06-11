@@ -1,6 +1,5 @@
 ## PokedexProject
 
-- Projeto que engloba a utilização de todas as bibliotecas do Android Jetpack.
 - Arquitetura Clean + MVVM
 - CI/CD com Bitrise (https://app.bitrise.io/) e FireBase
 
