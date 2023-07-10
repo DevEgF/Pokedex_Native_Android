@@ -20,5 +20,8 @@ O que utilizei de bibliotecas para a desenvolvimento ?
 
 <img src="https://github.com/DevEgF/PokedexProject/assets/104474051/eb608987-aac1-4ae8-bb2b-369b828c9979" data-canonical-src="https://gyazo.com/eb5c5741b6a9a16c692170a41a49c858.png" width="200" height="400" />
 
-## Segunda parte do projeto inclui ferramentas que monitoram a experiência do usuário, testes unitários (em desenvolvimento...)
-- ⚙️ Crashlytics 
+## Segunda parte do projeto inclui ferramentas que monitoram a experiência do usuário
+- 📊 Analytics *(Firebase)*;
+- ⚙️ Crashlytics *(Firebase)*.
+
+## Terceira parte (em desenvolvimento...)
