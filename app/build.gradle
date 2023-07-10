@@ -1,12 +1,14 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.firebase.crashlytics'
 }
 
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "androidx.navigation.safeargs"
 apply plugin: 'kotlin-parcelize'
+apply plugin: 'com.google.gms.google-services'
 apply from: '../config/detekt/detekt.gradle'
 
 android {
@@ -118,6 +120,11 @@ dependencies {
     //get Dominant image color
     def palette_version = "1.0.0"
     implementation "androidx.palette:palette-ktx:$palette_version"
+
+    //Firebase Analytics n Crashlytics
+    implementation(platform("com.google.firebase:firebase-bom:32.1.1"))
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
     // Other Libs
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
