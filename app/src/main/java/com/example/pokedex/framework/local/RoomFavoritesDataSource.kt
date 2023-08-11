@@ -1,7 +1,7 @@
 package com.example.pokedex.framework.local
 
-import com.example.pokedex.data.network.datasource.FavoriteLocalDataSource
-import com.example.pokedex.data.network.domain.PokemonResult
+import com.example.pokedex.data.datasource.FavoriteLocalDataSource
+import com.example.pokedex.domain.model.PokemonResult
 import com.example.pokedex.framework.db.dao.FavoriteDao
 import com.example.pokedex.framework.db.entity.FavoriteEntity
 import com.example.pokedex.framework.db.entity.toPokemonResultModel

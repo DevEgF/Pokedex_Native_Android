@@ -1,11 +1,11 @@
 package com.example.pokedex.framework.di
 
-import com.example.pokedex.data.usecase.AddFavoriteUseCase
-import com.example.pokedex.data.usecase.AddFavoriteUseCaseImpl
-import com.example.pokedex.data.usecase.GetPokemonUseCase
-import com.example.pokedex.data.usecase.GetPokemonUseCaseImpl
-import com.example.pokedex.data.usecase.GetSinglePokemonUseCase
-import com.example.pokedex.data.usecase.GetSinglePokemonUseCaseImpl
+import com.example.pokedex.domain.usecase.AddFavoriteUseCase
+import com.example.pokedex.domain.usecase.AddFavoriteUseCaseImpl
+import com.example.pokedex.domain.usecase.GetPokemonUseCase
+import com.example.pokedex.domain.usecase.GetPokemonUseCaseImpl
+import com.example.pokedex.domain.usecase.GetSinglePokemonUseCase
+import com.example.pokedex.domain.usecase.GetSinglePokemonUseCaseImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

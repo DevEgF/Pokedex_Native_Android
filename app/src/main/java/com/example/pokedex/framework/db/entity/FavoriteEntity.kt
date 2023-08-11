@@ -3,7 +3,7 @@ package com.example.pokedex.framework.db.entity
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.pokedex.data.network.domain.PokemonResult
+import com.example.pokedex.domain.model.PokemonResult
 import com.example.pokedex.framework.db.utils.DbConstants
 
 @Entity (tableName = DbConstants.FAVORITES_TABLE_NAME)

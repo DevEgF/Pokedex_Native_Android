@@ -1,9 +1,10 @@
 package com.example.pokedex.framework.remote
 
-import com.example.pokedex.data.network.PokeApi
-import com.example.pokedex.data.network.domain.PokemonResponse
-import com.example.pokedex.data.network.domain.SinglePokemonResponse
-import com.example.pokedex.data.network.datasource.PokemonRemoteDataSource
+import com.example.pokedex.service.PokeApi
+import com.example.pokedex.data.dto.PokemonResponse
+import com.example.pokedex.data.datasource.PokemonRemoteDataSource
+import com.example.pokedex.domain.model.SinglePokemon
+import com.example.pokedex.data.dto.toSinglePokemonModel
 import javax.inject.Inject
 
 class RetrofitPokemonDataSource @Inject constructor(
@@ -17,13 +18,7 @@ class RetrofitPokemonDataSource @Inject constructor(
         return PokemonResponse(count, next, previous, results)
     }
 
-    override suspend fun fetchSinglePokemon(id: Int): SinglePokemonResponse {
-        val sprites = pokeApi.getSinglePokemon(id).sprites
-        val stats = pokeApi.getSinglePokemon(id).stats
-        val height = pokeApi.getSinglePokemon(id).height
-        val weight = pokeApi.getSinglePokemon(id).weight
-        val id = pokeApi.getSinglePokemon(id).id
-        val name = pokeApi.getSinglePokemon(id).name
-        return SinglePokemonResponse(sprites, stats, height, weight, id, name)
+    override suspend fun fetchSinglePokemon(id: Int): SinglePokemon {
+        return pokeApi.getSinglePokemon(id).toSinglePokemonModel()
     }
 }

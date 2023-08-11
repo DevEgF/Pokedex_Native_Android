@@ -1,6 +1,6 @@
 package com.example.pokedex.utils.factory
 
-import com.example.pokedex.data.network.domain.PokemonResult
+import com.example.pokedex.domain.model.PokemonResult
 
 class PokemonFactory {
 

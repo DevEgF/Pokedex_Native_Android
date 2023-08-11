@@ -1,7 +1,7 @@
 package com.example.pokedex.data.repository
 
 import androidx.paging.PagingSource
-import com.example.pokedex.data.network.domain.PokemonResult
+import com.example.pokedex.domain.model.PokemonResult
 
  interface PokemonRepository {
 
