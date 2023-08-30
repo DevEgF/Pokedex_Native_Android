@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/pokemonInfoFragment"
-        android:name="com.example.pokedex.presentation.info.PokemonInfoFragment"
+        android:name="com.example.pokedex.feature.info.PokemonInfoFragment"
         android:label="@string/info_menu"
         tools:layout="@layout/fragment_pokemon_info" />
 </navigation>

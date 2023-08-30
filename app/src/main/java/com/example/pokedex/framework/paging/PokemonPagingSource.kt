@@ -2,8 +2,8 @@ package com.example.pokedex.framework.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.pokedex.data.network.datasource.PokemonRemoteDataSource
-import com.example.pokedex.data.network.domain.PokemonResult
+import com.example.pokedex.data.datasource.PokemonRemoteDataSource
+import com.example.pokedex.domain.model.PokemonResult
 
 @Suppress("TooGenericExceptionCaught")
 class PokemonPagingSource(

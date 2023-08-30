@@ -1,7 +1,7 @@
 package com.example.pokedex.framework.di
 
-import com.example.pokedex.data.network.datasource.FavoriteLocalDataSource
-import com.example.pokedex.data.network.datasource.PokemonRemoteDataSource
+import com.example.pokedex.data.datasource.FavoriteLocalDataSource
+import com.example.pokedex.data.datasource.PokemonRemoteDataSource
 import com.example.pokedex.data.repository.FavoritesRepository
 import com.example.pokedex.framework.remote.RetrofitPokemonDataSource
 import com.example.pokedex.data.repository.PokemonRepository

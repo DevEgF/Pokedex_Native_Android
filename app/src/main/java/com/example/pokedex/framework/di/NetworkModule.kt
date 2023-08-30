@@ -2,7 +2,7 @@ package com.example.pokedex.framework.di
 
 import com.example.pokedex.BuildConfig
 import com.example.pokedex.framework.di.qualifier.BaseUrl
-import com.example.pokedex.data.network.PokeApi
+import com.example.pokedex.service.PokeApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

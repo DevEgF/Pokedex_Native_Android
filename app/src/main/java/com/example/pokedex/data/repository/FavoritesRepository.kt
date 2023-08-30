@@ -1,6 +1,6 @@
 package com.example.pokedex.data.repository
 
-import com.example.pokedex.data.network.domain.PokemonResult
+import com.example.pokedex.domain.model.PokemonResult
 import kotlinx.coroutines.flow.Flow
 
 interface FavoritesRepository {

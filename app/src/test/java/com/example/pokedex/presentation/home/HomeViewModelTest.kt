@@ -3,7 +3,8 @@ package com.example.pokedex.presentation.home
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.example.pokedex.data.usecase.GetPokemonUseCase
+import com.example.pokedex.domain.usecase.GetPokemonUseCase
+import com.example.pokedex.feature.home.HomeViewModel
 import com.example.pokedex.utils.MainCoroutineRule
 import com.example.pokedex.utils.factory.PokemonFactory
 import com.nhaarman.mockitokotlin2.whenever

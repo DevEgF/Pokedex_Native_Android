@@ -6,7 +6,7 @@
     android:id="@+id/flipper_pokemon"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
-    tools:context=".presentation.home.HomeFragment">
+    tools:context=".feature.home.HomeFragment">
 
     <include
         android:id="@+id/include_view_pokemon_loading_state"
